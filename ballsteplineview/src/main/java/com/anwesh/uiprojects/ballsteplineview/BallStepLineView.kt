@@ -177,4 +177,26 @@ class BallStepLineView(ctx : Context) : View(ctx) {
             curr.startUpdating(cb)
         }
     }
+
+    data class Renderer(var view : BallStepLineView) {
+
+        private val animator : Animator = Animator(view)
+        private val bsl : BallStepLine = BallStepLine(0)
+
+        fun render(canvas : Canvas, paint : Paint) {
+            canvas.drawColor(backColor)
+            bsl.draw(canvas, paint)
+            animator.animate {
+                bsl.update {
+                    animator.stop()
+                }
+            }
+        }
+
+        fun handleTap() {
+            bsl.startUpdating {
+                animator.start()
+            }
+        }
+    }
 }
