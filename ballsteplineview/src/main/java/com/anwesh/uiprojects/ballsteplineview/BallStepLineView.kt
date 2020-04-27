@@ -202,4 +202,13 @@ class BallStepLineView(ctx : Context) : View(ctx) {
             }
         }
     }
+
+    companion object {
+
+        fun create(activity : Activity) : BallStepLineView {
+            val view : BallStepLineView = BallStepLineView(activity)
+            activity.setContentView(view)
+            return view
+        }
+    }
 }
